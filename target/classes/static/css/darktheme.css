@@ -1,0 +1,983 @@
+/* Additional Dark Theme styles for specific pages like login */
+
+/* Login/Register specific styles */
+.auth-wrapper {
+    /* Replace solid background with blurry dark grey */
+    background-color: transparent;
+    position: relative;
+    min-height: 100vh;
+}
+
+.auth-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23232323"/></svg>');
+    background-color: rgba(35, 35, 35, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: -1;
+}
+
+/* Create glass-like effect for login box */
+.auth-box {
+    background-color: rgba(30, 30, 30, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e0e0e0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 12px;
+}
+
+/* Add subtle shadow to text for better readability */
+.auth-header {
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom form elements for login/register */
+.auth-input {
+    background-color: #2d2d2d;
+    border-color: #444444;
+    color: #e0e0e0;
+}
+
+/* Enhance form elements with subtle glow on focus */
+.auth-input:focus {
+    border-color: #bb86fc;
+    box-shadow: 0 0 12px rgba(187, 134, 252, 0.4);
+}
+
+/* Add a subtle indicator for hover states on buttons */
+.auth-button {
+    transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #6200ee;
+    border-color: #6200ee;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(98, 0, 238, 0.3);
+}
+
+.auth-link {
+    color: #bb86fc;
+}
+
+.auth-link:hover {
+    color: #9966cc;
+}
+
+/* Error messages in forms */
+.error-message {
+    color: #f44336;
+}
+
+.success-message {
+    color: #4caf50;
+}
+
+/* Dashboard additional styles */
+.dashboard-stat {
+    color: #ffffff;
+}
+
+.dashboard-value {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.dashboard-currency {
+    color: #bb86fc;
+}
+
+.dashboard-currency::before {
+    content: "₹" !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+/* Replace dollar sign with rupee in all dashboard stats */
+.stat-value::before,
+.dashboard-stat-amount::before,
+.total-value::before {
+    content: "₹" !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    margin-right: 2px;
+}
+
+/* Fix for any special number formatting with rupee */
+.formatted-amount::before,
+.currency-formatted::before {
+    content: "₹" !important;
+    margin-right: 2px;
+}
+
+/* Ensure rupee symbol styling is consistent */
+.rupee-symbol {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    margin-right: 2px;
+}
+
+/* Specific fix for any elements with direct $ character */
+*:contains('$')::before {
+    content: "₹" !important;
+    visibility: visible;
+    display: inline;
+}
+
+*:contains('$') {
+    visibility: hidden;
+    position: relative;
+}
+
+/* Ensure chart tooltips and legends show rupee symbol */
+.chart-tooltip::before,
+.chart-legend-value::before {
+    content: "₹" !important;
+}
+
+/* Data tables specific */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+    color: #e0e0e0;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    background-color: #2d2d2d;
+    border-color: #444444;
+    color: #e0e0e0;
+}
+
+/* Fix for any specific charts */
+.chart-container {
+    background-color: #1e1e1e;
+    border-color: #333333;
+}
+
+.chart-title {
+    color: #ffffff;
+}
+
+/* Fix for report pages */
+.report-section {
+    background-color: #1e1e1e;
+    border-color: #333333;
+}
+
+.report-heading {
+    color: #ffffff;
+}
+
+.report-value {
+    color: #e0e0e0;
+}
+
+/* Additional fixes for transaction display issues */
+.transaction-table-container {
+    background-color: #1e1e1e;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* Fix for transaction list rendering */
+.transaction-list {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Ensure proper z-index for transaction elements */
+.transaction-item {
+    position: relative;
+    z-index: 1;
+}
+
+/* Animation for new transactions that won't interfere with existing ones */
+@keyframes highlightNew {
+    from { background-color: rgba(187, 134, 252, 0.3); }
+    to { background-color: transparent; }
+}
+
+.new-transaction {
+    animation: highlightNew 2s ease-out;
+}
+
+/* Ensure AJAX-loaded content appears properly */
+.ajax-loaded-content {
+    opacity: 1 !important;
+    display: table-row !important;
+}
+
+/* Fix for any JavaScript-based table filtering */
+.filtered-out {
+    display: none !important;
+}
+
+/* Fix any potential issues with date column */
+.transaction-date {
+    white-space: nowrap;
+    min-width: 150px;
+}
+
+/* Fix for description overflow */
+.transaction-description {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Fix for transaction category display */
+.transaction-category {
+    min-width: 100px;
+    white-space: nowrap;
+}
+
+/* Fix for any JavaScript-based sorting indicators */
+.sort-indicator {
+    display: inline-block;
+    margin-left: 5px;
+    color: #bb86fc;
+}
+
+/* Optional: Add subtle animation for login form appearance */
+@keyframes fadeInBlur {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0);
+        -webkit-backdrop-filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+}
+
+.auth-wrapper {
+    animation: fadeInBlur 0.5s ease-out forwards;
+}
+
+/* Additional transaction section fixes */
+.transaction-list-wrapper {
+    position: relative;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #333333;
+    margin-bottom: 20px;
+}
+
+/* Ensure transaction rows don't get replaced but added properly */
+.transaction-row {
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+/* Fix any DOM manipulation issues with transactions */
+.transactions-container table {
+    width: 100% !important;
+    display: table !important;
+}
+
+.transactions-container tbody {
+    display: table-row-group !important;
+}
+
+/* Ensure all transaction entries are visible regardless of DOM updates */
+.transaction-entry {
+    display: table-row !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix for table cells getting messed up */
+.transaction-cell {
+    display: table-cell !important;
+    padding: 10px !important;
+}
+
+/* Fix for dynamic row updates */
+@keyframes highlightRowFix {
+    0% { background-color: rgba(187, 134, 252, 0.3); }
+    100% { background-color: transparent; }
+}
+
+.transaction-highlight {
+    animation: highlightRowFix 2s ease-out;
+}
+
+/* Fix for transaction search/filter results */
+.filtered-transaction {
+    display: table-row !important;
+}
+
+/* Fix for any overlapping or z-index issues */
+.transaction-date-column {
+    position: relative;
+    z-index: 1;
+}
+
+.transaction-amount-column {
+    position: relative;
+    z-index: 1;
+    font-weight: bold;
+}
+
+/* Fix for any transaction sorting */
+.sort-column {
+    cursor: pointer;
+    position: relative;
+}
+
+.sort-column:after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    vertical-align: middle;
+    border-top: 4px solid #bb86fc;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+/* Fix for transaction type indicators */
+.transaction-type-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.income-indicator {
+    background-color: #4caf50;
+}
+
+.expense-indicator {
+    background-color: #f44336;
+}
+
+/* Fix for transaction table scrolling issues */
+.transaction-table-scroll {
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #444444 #1e1e1e;
+}
+
+.transaction-table-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.transaction-table-scroll::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.transaction-table-scroll::-webkit-scrollbar-thumb {
+    background-color: #444444;
+    border-radius: 4px;
+}
+
+/* Ensure any JavaScript framework rendering issues are fixed */
+[v-cloak], [ng-cloak], [data-reactroot], .hidden-row {
+    display: table-row !important;
+}
+
+/* Emergency fix for transactions page display issues */
+/* Force table display properties */
+body.dark-theme table,
+.dark-theme table,
+table.table {
+    display: table !important;
+    visibility: visible !important;
+    width: 100% !important;
+    margin-bottom: 1rem;
+    color: #e0e0e0 !important;
+    background-color: transparent;
+}
+
+body.dark-theme tbody,
+.dark-theme tbody,
+table.table tbody {
+    display: table-row-group !important;
+    visibility: visible !important;
+}
+
+body.dark-theme tr,
+.dark-theme tr,
+table.table tr {
+    display: table-row !important;
+    visibility: visible !important;
+    background-color: transparent;
+}
+
+body.dark-theme td,
+.dark-theme td,
+table.table td {
+    display: table-cell !important;
+    visibility: visible !important;
+}
+
+/* Fix for the Transactions page specifically */
+.transactions-main-section table {
+    width: 100% !important;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: transparent;
+}
+
+/* Fix any table header and rows in the Transactions page */
+.transactions-main-section th {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+    border-bottom: 2px solid #444 !important;
+    padding: 12px 8px !important;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.transactions-main-section td {
+    padding: 12px 8px !important;
+    border-bottom: 1px solid #333 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Fix for action buttons in the transactions table */
+.transactions-main-section .btn-action,
+.transactions-main-section .edit-btn,
+.transactions-main-section .delete-btn {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 0 5px !important;
+}
+
+/* Additional fix for transaction rows */
+.transaction-item,
+.transaction-row,
+tr.transaction,
+[data-transaction-id] {
+    visibility: visible !important;
+    display: table-row !important;
+    opacity: 1 !important;
+    background-color: inherit !important;
+}
+
+/* Fix for date column visibility */
+td.date-column,
+td.transaction-date,
+th.date-header {
+    visibility: visible !important;
+    display: table-cell !important;
+    min-width: 100px !important;
+}
+
+/* Fix for category column visibility */
+td.category-column,
+td.transaction-category,
+th.category-header {
+    visibility: visible !important;
+    display: table-cell !important;
+    min-width: 100px !important;
+}
+
+/* Fix for description column visibility */
+td.description-column,
+td.transaction-description,
+th.description-header {
+    visibility: visible !important;
+    display: table-cell !important;
+    min-width: 150px !important;
+}
+
+/* Fix for type column visibility */
+td.type-column,
+td.transaction-type,
+th.type-header {
+    visibility: visible !important;
+    display: table-cell !important;
+    min-width: 80px !important;
+}
+
+/* Fix for amount column visibility */
+td.amount-column,
+td.transaction-amount,
+th.amount-header {
+    visibility: visible !important;
+    display: table-cell !important;
+    min-width: 100px !important;
+    text-align: right !important;
+}
+
+/* Fix for actions column visibility */
+td.actions-column,
+td.transaction-actions,
+th.actions-header {
+    visibility: visible !important;
+    display: table-cell !important;
+    min-width: 120px !important;
+    text-align: center !important;
+}
+
+/* Override any JavaScript that might be hiding elements */
+.hidden, .d-none, .invisible, .collapse:not(.show) {
+    display: inherit !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix for transactions table layout */
+#main-transactions-table {
+    table-layout: auto !important;
+}
+
+/* Critical fix for transaction text display in the transactions table */
+/* Direct targeting based on the screenshot structure */
+body table tr td {
+    color: #e0e0e0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Direct fix for the exact table structure in screenshot */
+body main table tr td {
+    display: table-cell !important;
+    color: #e0e0e0 !important;
+    background-color: inherit !important;
+    text-shadow: none !important;
+    border-bottom: 1px solid #333 !important;
+}
+
+/* Emergency fix - extra strong selectors for transaction rows */
+body table tbody tr,
+main table tbody tr {
+    background-color: #1e1e1e !important;
+    display: table-row !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix for the transaction cells - try to match any possible naming convention */
+[id*="transaction"] td,
+[class*="transaction"] td,
+td[data-field],
+td[class*="col"],
+td.date,
+td.category,
+td.description,
+td.type,
+td.amount,
+td.actions {
+    color: #e0e0e0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: table-cell !important;
+    background-color: inherit !important;
+}
+
+/* Fix for the filter dropdowns */
+select[id*="filter"],
+select.form-control {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border-color: #444 !important;
+}
+
+/* Fix for entire table area */
+.transaction-table-area,
+.table-responsive,
+.table-container {
+    background-color: #1e1e1e !important;
+    border-radius: 8px !important;
+    padding: 5px !important;
+    margin-bottom: 20px !important;
+    border: 1px solid #333 !important;
+}
+
+/* Fix for transaction data visibility when font-color might be overridden */
+table td * {
+    color: inherit !important;
+}
+
+/* Fix background for striped rows based on screenshot */
+tr:nth-of-type(2n) {
+    background-color: #252525 !important;
+}
+
+/* Fix for any client-side generated transaction rows */
+tr.inserted-row,
+tr.updated-row,
+tr.new-row {
+    display: table-row !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Special fix to ensure specific cells in the actions column are visible */
+td:last-child,
+td.actions {
+    text-align: center !important;
+}
+
+/* Ensure any hidden elements are now showing */
+.hidden-content,
+.initially-hidden {
+    display: inherit !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix for missing transaction data possibly due to AJAX issues */
+@keyframes showTransactionData {
+    to { opacity: 1; visibility: visible; }
+}
+
+table tbody {
+    animation: showTransactionData 0.1s forwards !important;
+}
+
+/* Direct targeting of Financial Summary cards in dashboard */
+.financial-summary .card-body {
+    position: relative;
+}
+
+.financial-summary .card-body:contains('$'):before {
+    content: "₹";
+    position: absolute;
+    left: 15px;
+    visibility: visible;
+    font-weight: bold;
+}
+
+.financial-summary .card-body:contains('$') > :first-child {
+    visibility: hidden;
+}
+
+/* Extreme override for specific dashboard numbers */
+h1:contains('Financial Summary') + div .card .card-body > :first-child:contains('$') {
+    visibility: hidden;
+    position: relative;
+}
+
+h1:contains('Financial Summary') + div .card .card-body > :first-child:contains('$'):before {
+    content: "₹";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+}
+
+/* Specific fix for the amount display in the screenshot */
+h1:contains('Financial Summary') ~ .row .card .card-body > :first-child {
+    position: relative;
+    padding-left: 15px;
+}
+
+h1:contains('Financial Summary') ~ .row .card .card-body > :first-child:before {
+    content: "₹";
+    position: absolute;
+    left: 0;
+    visibility: visible;
+}
+
+/* More specific targeting for the dollar sign in the exact cards from screenshot */
+.row > div > .card .card-body {
+    position: relative;
+}
+
+/* Target any element in financial summary containing $ */
+.financial-summary *:contains('$') {
+    position: relative;
+    padding-left: 15px;
+}
+
+.financial-summary *:contains('$'):before {
+    content: "₹";
+    position: absolute;
+    left: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    visibility: visible;
+}
+
+/* Target specific card elements from screenshot - most direct approach */
+#totalIncome,
+#totalExpenses, 
+#currentBalance,
+.total-income,
+.total-expenses,
+.current-balance {
+    position: relative;
+    padding-left: 15px;
+}
+
+#totalIncome:before,
+#totalExpenses:before, 
+#currentBalance:before,
+.total-income:before,
+.total-expenses:before,
+.current-balance:before {
+    content: "₹";
+    position: absolute;
+    left: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    visibility: visible;
+}
+
+/* CSS-only solution for replacing dollar sign text */
+.card-body {
+    position: relative;
+}
+
+.card-body h1,
+.card-body h2,
+.card-body h3,
+.card-body h4,
+.card-body h5,
+.card-body h6,
+.card-body span,
+.card-body div {
+    position: relative;
+}
+
+/* Specific CSS for the exact screenshot structure */
+[class*="card"] [class*="body"] *:first-child {
+    position: relative;
+}
+
+[class*="card"] [class*="body"] *:first-child:before {
+    content: "₹";
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    margin-right: 2px;
+}
+
+/* Complete dollar symbol removal for financial summary */
+/* Target exactly the structure in the screenshot */
+.financial-summary .card span,
+.financial-summary .card div {
+    position: relative;
+    padding-left: 15px;
+}
+
+/* Remove $ and add ₹ */
+.financial-summary .card span::first-letter,
+.financial-summary .card div::first-letter {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    color: transparent !important;
+}
+
+.financial-summary .card span::before,
+.financial-summary .card div::before {
+    content: "₹";
+    position: absolute;
+    left: 0;
+    visibility: visible;
+    color: #e0e0e0;
+}
+
+/* Specific fix for the Financial Summary cards in screenshot */
+[class*="Total Income"],
+[class*="Total Expenses"],
+[class*="Current Balance"] {
+    position: relative;
+}
+
+[class*="Total Income"] + div,
+[class*="Total Expenses"] + div,
+[class*="Current Balance"] + div {
+    position: relative;
+    padding-left: 15px;
+}
+
+[class*="Total Income"] + div::before,
+[class*="Total Expenses"] + div::before,
+[class*="Current Balance"] + div::before {
+    content: "₹";
+    position: absolute;
+    left: 0;
+    visibility: visible;
+    color: #e0e0e0;
+}
+
+/* Fix for amount column in recent transactions */
+table td:nth-last-child(1):not(.actions),
+table td:nth-last-child(2):not(.actions) {
+    position: relative;
+    padding-left: 25px !important;
+}
+
+table td:nth-last-child(1):not(.actions)::before,
+table td:nth-last-child(2):not(.actions)::before {
+    content: "₹";
+    position: absolute;
+    left: 12px;
+    visibility: visible;
+    color: inherit;
+}
+
+/* Direct fix for amount in transaction list */
+table td:nth-child(5),
+td.amount {
+    position: relative;
+    padding-left: 25px !important;
+}
+
+table td:nth-child(5)::before,
+td.amount::before {
+    content: "₹";
+    position: absolute;
+    left: 12px;
+    visibility: visible;
+    color: inherit;
+}
+
+/* Force $ character to be invisible */
+*::first-letter {
+    color: inherit;
+}
+
+*:contains('$')::first-letter {
+    color: transparent !important;
+    font-size: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Target exact HTML structure from screenshot */
+table tbody tr td:last-child {
+    position: relative;
+    padding-left: 25px;
+}
+
+table tbody tr td:last-child::first-letter {
+    visibility: hidden;
+    color: transparent;
+}
+
+table tbody tr td:last-child::before {
+    content: "₹";
+    position: absolute;
+    left: 12px;
+    visibility: visible;
+    color: inherit;
+}
+
+/* Most specific targeting for Amount column in screenshot */
+th:contains('Amount') ~ td {
+    position: relative;
+    padding-left: 25px !important;
+}
+
+th:contains('Amount') ~ td::first-letter {
+    visibility: hidden;
+    color: transparent;
+}
+
+th:contains('Amount') ~ td::before {
+    content: "₹";
+    position: absolute;
+    left: 12px;
+    visibility: visible;
+    color: inherit;
+}
+
+/* Fix the financial summary structure */
+.row > .col > .card > .card-body {
+    position: relative;
+}
+
+.row > .col > .card > .card-body > * {
+    position: relative;
+}
+
+.row > .col > .card > .card-body > *::first-letter {
+    visibility: hidden;
+    color: transparent;
+    font-size: 0;
+}
+
+.row > .col > .card > .card-body > *::before {
+    content: "₹";
+    position: absolute;
+    left: 0;
+    visibility: visible;
+    color: inherit;
+}
+
+/* Fix rupee symbol on profile page */
+#profile-section::before,
+#profile-section *::before {
+    content: none !important;
+    display: none !important;
+}
+
+#profile-section *::first-letter {
+    color: inherit !important;
+    font-size: inherit !important;
+    visibility: visible !important;
+}
+
+#profile-section input,
+#profile-section label,
+#profile-section button,
+#profile-section h2 {
+    color: #e0e0e0 !important;
+    position: static !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix welcome text in navbar */
+.navbar-nav .nav-item span.nav-link {
+    color: #b3b3b3 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+}
+
+.navbar-nav .nav-item span.nav-link::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* Fix any rupee symbol showing in profile and welcome text */
+.navbar span::before,
+#profile-section span::before,
+#profile-section label::before,
+#profile-section h2::before,
+#profile-section div::before,
+#profile-section input::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* Specific selector for User Profile heading and form elements */
+[class*="card-header"] h2,
+#username-label, #username,
+#email-label, #email,
+#password-label, #password,
+#update-profile-btn {
+    padding-left: 0 !important;
+    position: static !important;
+}
+
+[class*="card-header"] h2::before,
+#username-label::before, #username::before,
+#email-label::before, #email::before,
+#password-label::before, #password::before,
+#update-profile-btn::before {
+    content: none !important;
+    display: none !important;
+}

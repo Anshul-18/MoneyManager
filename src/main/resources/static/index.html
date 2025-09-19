@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/darktheme.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Money Manager</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="dashboard-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="transactions-link">Transactions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="profile-link">Profile</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, <span id="current-user">User</span></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logout-btn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="section-content">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2>Financial Summary</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Income</h5>
+                            <h2 class="card-text" id="total-income">₹0.00</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Expenses</h5>
+                            <h2 class="card-text" id="total-expenses">₹0.00</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Current Balance</h5>
+                            <h2 class="card-text" id="current-balance">₹0.00</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <h3>Recent Transactions</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="recent-transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-transactions-body">
+                                <!-- Recent transactions will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Section -->
+        <div id="transactions-section" class="section-content" style="display: none;">
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <h2>Transactions</h2>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-primary" id="add-transaction-btn">Add Transaction</button>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <select class="form-select" id="filter-type">
+                        <option value="ALL">All Types</option>
+                        <option value="INCOME">Income</option>
+                        <option value="EXPENSE">Expense</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="filter-category">
+                        <option value="ALL">All Categories</option>
+                        <!-- Categories will be populated dynamically -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped" id="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-body">
+                        <!-- Transactions will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="section-content" style="display: none;">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>User Profile</h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="profile-form">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Enter new password">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div class="modal fade" id="transaction-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Add Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="transaction-form">
+                        <input type="hidden" id="transaction-id">
+                        <div class="mb-3">
+                            <label class="form-label">Type</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="type-income" value="INCOME" checked>
+                                <label class="form-check-label" for="type-income">Income</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="type-expense" value="EXPENSE">
+                                <label class="form-check-label" for="type-expense">Expense</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="amount" step="0.01" min="0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="description" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <input type="text" class="form-control" id="category" list="category-list" required>
+                            <datalist id="category-list">
+                                <option value="Salary">
+                                <option value="Bonus">
+                                <option value="Food">
+                                <option value="Housing">
+                                <option value="Transportation">
+                                <option value="Entertainment">
+                                <option value="Utilities">
+                                <option value="Healthcare">
+                                <option value="Education">
+                                <option value="Shopping">
+                                <option value="Other">
+                            </datalist>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="datetime-local" class="form-control" id="date" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="save-transaction">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/backup-service.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Data persistence status -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="backup-toast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-cloud-check"></i> Data saved successfully
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Commented out troubleshooting code for login page 
+    <script>
+        // Replace dollar signs with rupee symbols for dynamic content
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to replace $ with ₹ in text content
+            function replaceDollarWithRupee(element) {
+                if (element.childNodes.length === 0) {
+                    if (element.textContent && element.textContent.includes('$')) {
+                        element.textContent = element.textContent.replace(/\$/g, '₹');
+                    }
+                } else {
+                    element.childNodes.forEach(child => {
+                        if (child.nodeType === 3) { // Text node
+                            if (child.textContent && child.textContent.includes('$')) {
+                                child.textContent = child.textContent.replace(/\$/g, '₹');
+                            }
+                        } else if (child.nodeType === 1) { // Element node
+                            replaceDollarWithRupee(child);
+                        }
+                    });
+                }
+            }
+
+            // Initial replacement
+            replaceDollarWithRupee(document.body);
+
+            // Set up observer for dynamic content changes
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        mutation.addedNodes.forEach(node => {
+                            if (node.nodeType === 1) { // Element node
+                                replaceDollarWithRupee(node);
+                            }
+                        });
+                    } else if (mutation.type === 'characterData') {
+                        const parentNode = mutation.target.parentNode;
+                        if (parentNode) {
+                            replaceDollarWithRupee(parentNode);
+                        }
+                    }
+                });
+            });
+
+            observer.observe(document.body, { 
+                childList: true, 
+                subtree: true, 
+                characterData: true 
+            });
+
+            // Hook into any potential JavaScript-based updates
+            const originalSetTextContent = Object.getOwnPropertyDescriptor(Node.prototype, 'textContent').set;
+            Object.defineProperty(Node.prototype, 'textContent', {
+                set(value) {
+                    if (typeof value === 'string' && value.includes('$')) {
+                        value = value.replace(/\$/g, '₹');
+                    }
+                    return originalSetTextContent.call(this, value);
+                }
+            });
+        });
+    </script>
+    -->
+</body>
+</html>

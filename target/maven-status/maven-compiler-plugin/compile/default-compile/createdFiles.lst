@@ -1,0 +1,15 @@
+com\example\moneymanager\config\DataInitializer.class
+com\example\moneymanager\model\User.class
+com\example\moneymanager\dto\LoginRequest.class
+com\example\moneymanager\repository\UserRepository.class
+com\example\moneymanager\controller\UserController.class
+com\example\moneymanager\repository\TransactionRepository.class
+com\example\moneymanager\service\TransactionService.class
+com\example\moneymanager\dto\TransactionDTO.class
+com\example\moneymanager\controller\AuthController.class
+com\example\moneymanager\dto\ApiResponse.class
+com\example\moneymanager\dto\UserDTO.class
+com\example\moneymanager\controller\TransactionController.class
+com\example\moneymanager\service\UserService.class
+com\example\moneymanager\MoneyManagerApplication.class
+com\example\moneymanager\model\Transaction.class

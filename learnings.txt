@@ -1,0 +1,92 @@
+Accessing the API
+1. Using a Web Browser
+H2 Database Console
+Open your browser and go to: http://localhost:8080/h2-console
+Use these connection settings:
+JDBC URL: jdbc:h2:mem:moneymanagerdb
+Username: sa
+Password: (leave empty)
+Click "Connect" to access the database and view your tables and data
+
+Swagger UI (API Documentation)
+Since you have SpringDoc OpenAPI in your dependencies, you can access the API documentation at:
+http://localhost:8080/swagger-ui/index.html
+This provides interactive documentation where you can test all APIs directly
+2. Using API Endpoints
+You can use tools like Postman, cURL, or any HTTP client to interact with the REST API. Here are the main endpoints:
+
+
+
+User Management
+Get all users: GET http://localhost:8080/api/users
+Get user by ID: GET http://localhost:8080/api/users/{id}
+Get user by username: GET http://localhost:8080/api/users/username/{username}
+Create user: POST http://localhost:8080/api/users
+Update user: PUT http://localhost:8080/api/users/{id}
+Delete user: DELETE http://localhost:8080/api/users/{id}
+
+
+Transaction Management
+Get transactions by user: GET http://localhost:8080/api/transactions/user/{userId}
+Get transaction by ID: GET http://localhost:8080/api/transactions/{id}
+Get transactions by type: GET http://localhost:8080/api/transactions/user/{userId}/type/{type} (INCOME or EXPENSE)
+Get transactions by category: GET http://localhost:8080/api/transactions/user/{userId}/category/{category}
+Get financial summary: GET http://localhost:8080/api/transactions/user/{userId}/summary
+Create transaction: POST http://localhost:8080/api/transactions
+Update transaction: PUT http://localhost:8080/api/transactions/{id}
+Delete transaction: DELETE http://localhost:8080/api/transactions/{id}
+
+
+Sample API Usage
+1. Getting Users
+GET http://localhost:8080/api/users
+
+This will return all users, including John and Jane that were created in the sample data.
+
+2. Getting Transactions
+GET http://localhost:8080/api/transactions/user/1
+
+This will return all transactions for user with ID 1 (John in your sample data).
+
+3. Getting Financial Summary
+GET http://localhost:8080/api/transactions/user/1/summary
+
+This will return a summary showing total balance, income and expenses for user 1.
+
+4. Creating a New Transaction
+POST http://localhost:8080/api/transactions
+Content-Type: application/json
+
+{
+  "type": "EXPENSE",
+  "amount": 45.50,
+  "description": "Dinner at restaurant",
+  "date": "2023-09-16T19:30:00",
+  "category": "Dining",
+  "userId": 1
+}
+
+5. Creating a New User
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "username": "robert_smith",
+  "email": "robert@example.com",
+  "password": "secure123"
+}
+
+Example cURL Commands
+Here are some example cURL commands you can run from your terminal:
+
+Get all users:
+curl -X GET http://localhost:8080/api/users
+
+Get financial summary for user 1:
+curl -X GET http://localhost:8080/api/transactions/user/1/summary
+
+Create a new transaction:
+curl -X POST http://localhost:8080/api/transactions \
+  -H "Content-Type: application/json" \
+  -d '{"type":"EXPENSE","amount":45.50,"description":"Dinner at restaurant","date":"2023-09-16T19:30:00","category":"Dining","userId":1}'
+
