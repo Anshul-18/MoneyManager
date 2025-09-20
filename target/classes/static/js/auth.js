@@ -596,7 +596,7 @@ async function ensureAdminAccount() {
             const loginAlert = document.getElementById('login-alert');
             loginAlert.classList.remove('alert-danger');
             loginAlert.classList.add('alert-info');
-            loginAlert.textContent = 'Hint: You can login with username "admin" and password "admin123"';
+            loginAlert.textContent = 'Hint: You can login with username "admin" and password " "';
             loginAlert.style.display = 'block';
             
             return; // Admin already exists, nothing to do
